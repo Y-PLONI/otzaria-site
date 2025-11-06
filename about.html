@@ -33,7 +33,7 @@
       <div class="container">
         <div class="about-layout-full">
           <!-- תוכן ראשי -->
-          <div class="about-main-full"></div>
+          <div class="about-main-full">
             <!-- כותרת עם לוגו -->
             <div class="about-header">
               <img
@@ -323,8 +323,22 @@
         }, stepDuration);
       }
 
-      // הפעלת האנימציה כשהדף נטען
-      window.addEventListener('load', animateCounter);
+      // הפעלת האנימציה רק כשהמשתמש רואה את האלמנט
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounter();
+            observer.disconnect(); // הפעל רק פעם אחת
+          }
+        });
+      }, { threshold: 0.5 });
+
+      window.addEventListener('load', () => {
+        const statsBox = document.querySelector('.stats-box');
+        if (statsBox) {
+          observer.observe(statsBox);
+        }
+      });
     </script>
   </body>
 </html>

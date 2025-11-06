@@ -33,8 +33,14 @@
                 <nav class="docs-nav">
                     <h3 class="docs-nav-title">תוכן עניינים</h3>
                     <ul class="docs-nav-list">
-                        <li><a href="#installation">התקנה</a>
-                            <ul>
+                        <li class="has-submenu">
+                            <div class="nav-item-header">
+                                <a href="#installation">התקנה</a>
+                                <button class="toggle-submenu" aria-label="הרחב/צמצם">
+                                    <span class="material-symbols-outlined">expand_more</span>
+                                </button>
+                            </div>
+                            <ul class="submenu">
                                 <li><a href="#windows">Windows</a></li>
                                 <li><a href="#linux">Linux</a></li>
                                 <li><a href="#android">Android</a></li>
@@ -42,8 +48,14 @@
                                 <li><a href="#macos">macOS</a></li>
                             </ul>
                         </li>
-                        <li><a href="#usage">שימוש בסיסי</a>
-                            <ul>
+                        <li class="has-submenu">
+                            <div class="nav-item-header">
+                                <a href="#usage">שימוש בסיסי</a>
+                                <button class="toggle-submenu" aria-label="הרחב/צמצם">
+                                    <span class="material-symbols-outlined">expand_more</span>
+                                </button>
+                            </div>
+                            <ul class="submenu">
                                 <li><a href="#library">דפדוף בספרייה</a></li>
                                 <li><a href="#search">חיפוש</a></li>
                                 <li><a href="#reading">קריאה</a></li>
@@ -52,7 +64,7 @@
                         </li>
                         <li><a href="#features">תכונות מתקדמות</a></li>
                         <li><a href="#settings">הגדרות</a></li>
-                        <li><a href="#tutorials">מדריכים נוספים</a></li>>
+                        <li><a href="#tutorials">מדריכים נוספים</a></li>
                     </ul>
                 </nav>
             </aside>
@@ -337,7 +349,7 @@
                 <section class="docs-section help-section">
                     <h2>זקוק לעזרה נוספת?</h2>
                     <p>אם נתקלת בבעיה או שיש לך שאלה:</p>
-                    <div class="help-links"></div>
+                    <div class="help-links">
                         <a href="https://github.com/sivan22/otzaria/issues" class="help-link">
                             <span class="material-symbols-outlined">bug_report</span>
                             <div>
@@ -371,5 +383,16 @@
             <p>קוד פתוח תחת רישיון Unlicense | <a href="https://github.com/sivan22/otzaria">GitHub</a></p>
         </div>
     </footer>
+
+    <script>
+        // Toggle submenu functionality
+        document.querySelectorAll('.toggle-submenu').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const parentLi = button.closest('.has-submenu');
+                parentLi.classList.toggle('collapsed');
+            });
+        });
+    </script>
 </body>
 </html>

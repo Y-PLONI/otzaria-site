@@ -9,8 +9,9 @@
 .docs-main .container {
     display: grid;
     grid-template-columns: 280px 1fr;
-    gap: 3rem;
+    gap: 2rem;
     align-items: start;
+    padding: 0;
 }
 
 .docs-main .container.single-column {
@@ -24,11 +25,18 @@
     position: sticky;
     top: 100px;
     background-color: var(--surface);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
     max-height: calc(100vh - 120px);
     overflow-y: auto;
+    /* הסתרת פס הגלילה */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .docs-nav-title {
@@ -63,6 +71,98 @@
     color: white;
 }
 
+/* Collapsible Navigation Items */
+.has-submenu {
+    position: relative;
+}
+
+.nav-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.nav-item-header > a {
+    flex: 1;
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--on-surface);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+}
+
+.nav-item-header > a:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.toggle-submenu {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+    color: var(--on-surface-variant);
+}
+
+.toggle-submenu:hover {
+    background-color: var(--surface-variant);
+    color: var(--primary-color);
+}
+
+.toggle-submenu .material-symbols-outlined {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.has-submenu.collapsed .toggle-submenu .material-symbols-outlined {
+    transform: rotate(-90deg);
+}
+
+.submenu {
+    list-style: none;
+    margin-top: 0.5rem;
+    padding-right: 1rem;
+    max-height: 500px;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+.has-submenu.collapsed .submenu {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+}
+
+.submenu li {
+    margin-bottom: 0.5rem;
+}
+
+.submenu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--on-surface-variant);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+}
+
+.submenu a:hover {
+    background-color: var(--surface-variant);
+    color: var(--primary-color);
+    padding-right: 1.5rem;
+}
+
+/* Legacy support for non-collapsible items */
 .docs-nav-list ul {
     list-style: none;
     margin-top: 0.5rem;
@@ -214,7 +314,6 @@
     padding: 2rem;
     background-color: var(--surface-variant);
     border-radius: var(--radius-lg);
-    border-right: 4px solid var(--primary-color);
 }
 
 .feature-icon {
@@ -235,7 +334,6 @@
 
 .tip-box {
     background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-    border-right: 4px solid #ff9800;
     padding: 1rem 1.5rem;
     border-radius: var(--radius-sm);
     margin-top: 1.5rem;
@@ -369,19 +467,20 @@
 
 /* Help Section */
 .help-section {
-    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+    background: linear-gradient(135deg, var(--surface) 0%, var(--accent-color) 100%);
     padding: 3rem;
     border-radius: var(--radius-lg);
-    color: white;
+    border: 3px solid var(--primary-color);
+    color: var(--on-surface);
 }
 
 .help-section h2 {
-    color: white;
+    color: var(--primary-dark);
 }
 
 .help-section p {
     font-size: var(--text-lg);
-    opacity: 0.95;
+    color: var(--on-surface-variant);
     margin-bottom: 2rem;
 }
 
@@ -479,7 +578,6 @@
     padding: 2rem;
     border-radius: var(--radius-lg);
     margin-bottom: 2rem;
-    border-right: 4px solid var(--primary-color);
 }
 
 .info-row {
@@ -516,7 +614,6 @@
     padding: 1.5rem;
     background-color: var(--surface-variant);
     border-radius: var(--radius-md);
-    border-right: 4px solid var(--accent-color);
 }
 
 .docs-content h1 {
@@ -574,14 +671,15 @@
 .cta-section {
     margin-top: 4rem;
     padding: 3rem;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--surface) 0%, var(--accent-color) 100%);
     border-radius: var(--radius-lg);
+    border: 3px solid var(--primary-color);
     text-align: center;
-    color: white;
+    color: var(--on-surface);
 }
 
 .cta-section h2 {
-    color: white;
+    color: var(--primary-dark);
     border: none;
     margin: 0 0 1.5rem 0;
     padding: 0;
